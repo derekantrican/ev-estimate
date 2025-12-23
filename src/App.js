@@ -201,8 +201,8 @@ function App() {
           <h2>{currentLeg.name} - {currentLeg.dataPoints.length} Data Points</h2>
           {currentLeg.dataPoints.length > 0 && (
             <div className="recent-entries">
-              <h3>Recent Entries</h3>
-              {currentLeg.dataPoints.slice(-5).reverse().map(point => (
+              <h3>All Entries</h3>
+              {[...currentLeg.dataPoints].reverse().map(point => (
                 <div key={point.id} className="data-point">
                   <div className="data-row">
                     <span>Maps: {point.googleMapsEstimate} mi</span>
