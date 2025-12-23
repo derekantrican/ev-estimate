@@ -240,6 +240,11 @@
   font-weight: 600;
 }
 
+.recent-entries {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
 .data-point {
   padding: 12px;
   background-color: #1a1a1a;
