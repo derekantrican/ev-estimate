@@ -1,38 +1,304 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #0d0d0d;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.App-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.App-header .current-leg {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #61dafb;
+  font-weight: 500;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: #2d2d2d;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 4px;
+  transition: background-color 0.2s;
+}
+
+.hamburger-menu:hover {
+  background: #3d3d3d;
+}
+
+.hamburger-menu span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #61dafb;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* Side Menu */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: #2d2d2d;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+  z-index: 1002;
+  transition: left 0.3s ease;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.close-menu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  line-height: 1;
+}
+
+.side-menu h2 {
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.menu-item {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 10px;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  border: 2px solid #444;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background: #0d0d0d;
+  border-color: #61dafb;
+}
+
+.menu-item.danger {
+  border-color: #ff4444;
+}
+
+.menu-item.danger:hover {
+  background: #ff4444;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.menu-info {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #444;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.menu-info p {
+  color: #b0b0b0;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.App-main {
+  flex: 1;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.input-form {
+  background: #2d2d2d;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  margin-bottom: 24px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
+.range-input {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.5rem;
+  border: 2px solid #444;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.range-input:focus {
+  outline: none;
+  border-color: #61dafb;
+  background-color: #0d0d0d;
+}
+
+.range-input::placeholder {
+  color: #666;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.submit-button:hover {
+  background-color: #4fa8c5;
+}
+
+.submit-button:active {
+  background-color: #3d8ba3;
+}
+
+.data-summary {
+  background: #2d2d2d;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.data-summary h2 {
+  color: #e0e0e0;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.recent-entries h3 {
+  color: #b0b0b0;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.data-point {
+  padding: 12px;
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  border-left: 4px solid #61dafb;
+}
+
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.data-row span {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 600px) {
+  .App-main {
+    padding: 16px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .input-form {
+    padding: 20px;
   }
+
+  .App-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .range-input {
+    padding: 14px;
+    font-size: 1.3rem;
+  }
+
+  .data-row {
+    font-size: 0.85rem;
+  }
+}
+
+/* Ensure inputs work well on iOS */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
